@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Painel Careca</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0b0b;
+  color:#fff;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Painel */
+.painel{
+  width:310px;
+  background:#000;
+  border-radius:8px;
+  box-shadow:0 0 10px rgba(255,0,0,0.2);
+  border:1px solid #222;
+  overflow:hidden;
+  display:none;
+}
+.header{
+  background:#ff3b3b;
+  padding:6px 10px;
+  text-align:center;
+  font-weight:bold;
+  font-size:13px;
+  border-radius:8px 8px 0 0;
+}
+.content{
+  display:grid;
+  grid-template-columns:40px auto;
+}
+.left{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:10px 0;
+  border-right:1px solid #1f1f1f;
+}
+.icon{
+  width:22px;height:22px;border-radius:6px;
+  background:#1a1a1a;border:1px solid #333;
+  cursor:pointer;transition:0.2s;
+}
+.icon.active{background:#ff0000;box-shadow:0 0 5px #ff0000;}
+.right{
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.option{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0d0d0d;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:13px;
+}
+.toggle{
+  width:22px;height:22px;
+  border-radius:4px;
+  background:#1a1a1a;
+  border:1px solid #222;
+  cursor:pointer;
+  transition:0.2s;
+}
+.toggle.active{background:#ff0000;box-shadow:0 0 6px #ff0000;}
+
+/* Tela de login */
+.login{
+  background:#000;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 0 15px rgba(255,0,0,0.2);
+  text-align:center;
+  width:300px;
+}
+.login h2{margin-bottom:10px;}
+.login input{
+  width:90%;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  margin-bottom:10px;
+  background:#111;
+  color:#fff;
+}
+.login button{
+  background:#ff3b3b;
+  border:none;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.login button:hover{background:#ff5c5c;}
+.error{color:#ff5c5c;font-size:13px;margin-top:5px;}
+</style>
+</head>
+<body>
+
+<!-- Tela de login -->
+<div class="login" id="loginBox">
+  <h2>LOGIN DE ACESSO</h2>
+  <input type="password" id="keyInput" placeholder="Digite sua key">
+  <br>
+  <button id="loginBtn">Entrar</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<!-- Painel principal -->
+<div class="painel" id="painelBox">
+  <div class="header">PAINEL CARECA @KN XITS FF</div>
+  <div class="content">
+    <div class="left">
+      <div class="icon active"></div>
+      <div class="icon"></div>
+      <div class="icon"></div>
+    </div>
+    <div class="right">
+      <div class="option"><span>Aimbot Rage</span><div class="toggle active"></div></div>
+      <div class="option"><span>Aimbot Legit</span><div class="toggle"></div></div>
+      <div class="option"><span>Aim Lock</span><div class="toggle"></div></div>
+      <div class="option"><span>No Recoil</span><div class="toggle"></div></div>
+      <div class="option"><span>Tela Esticada</span><div class="toggle"></div></div>
+      <div class="option"><span>Mira Pro</span><div class="toggle"></div></div>
+      <div class="option"><span>Target Force</span><div class="toggle active"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const loginBox = document.getElementById('loginBox');
+const painelBox = document.getElementById('painelBox');
+const keyInput = document.getElementById('keyInput');
+const errorMsg = document.getElementById('errorMsg');
+const loginBtn = document.getElementById('loginBtn');
+
+// Função para abrir painel
+function openPanel(){
+  loginBox.style.display = 'none';
+  painelBox.style.display = 'block';
+}
+
+// Login
+loginBtn.onclick = () => {
+  const key = keyInput.value.trim();
+  if(key === "knxitsffvip2025"){
+    openPanel();
+  } else {
+    errorMsg.textContent = "Key incorreta!";
+  }
+};
+
+// Também permite Enter
+keyInput.addEventListener("keypress", e=>{
+  if(e.key==="Enter") loginBtn.click();
+});
+
+// Toggles e ícones
+document.querySelectorAll('.toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>btn.classList.toggle('active'));
+});
+document.querySelectorAll('.icon').forEach(btn=>{
+  btn.addEventListener('click',()=>btn.classList.toggle('active'));
+});
+</script>
+
+</body>
+</html>
